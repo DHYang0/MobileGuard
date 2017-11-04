@@ -20,6 +20,7 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.receiver.MyDeviceAdminReceiver;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
+import cn.edu.gdmec.android.mobileguard.m3communicationguard.SecurityPhoneActivity;
 
 public class HomeActivity extends AppCompatActivity {
     private GridView gv_home;
@@ -38,8 +39,10 @@ public class HomeActivity extends AppCompatActivity {
         gv_home = (GridView) findViewById(R.id.gv_home);
         gv_home.setAdapter(new HomeAdapter (HomeActivity.this));
         gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+//            点击功能响应代码
+//            i为点击功能在数组内的下标
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view,int i, long l){
+            public void onItemClick(AdapterView<?> adapterView, View view,int i, long id){
                 System.out.print(i);
                 switch (i) {
                     case 0:
@@ -48,6 +51,9 @@ public class HomeActivity extends AppCompatActivity {
                         } else {
                             showSetUpPswdDialog();
                         }
+                        break;
+                    case 1:
+                        startActivity(SecurityPhoneActivity.class);
                         break;
                 }
             }
@@ -81,6 +87,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
     private  void showSetUpPswdDialog(){
         final SetUpPasswordDialog setUpPasswordDialog = new SetUpPasswordDialog(HomeActivity.this);
         setUpPasswordDialog.setCallBack(new SetUpPasswordDialog.MyCallBack(){

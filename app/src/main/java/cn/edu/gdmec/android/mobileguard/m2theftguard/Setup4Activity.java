@@ -19,7 +19,7 @@ public class Setup4Activity extends BaseSetUpActivity {
         setContentView(R.layout.activity_setup_4);
         ((RadioButton)findViewById(R.id.rb_four)).setChecked(true);
         initView();
-        
+
     }
 
     private void initView(){
