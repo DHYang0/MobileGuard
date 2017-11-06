@@ -5,11 +5,17 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PermissionInfo;
+import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 
@@ -30,16 +36,43 @@ public class AppInfoParser {
             appInfo.icon = icon;
             String appname = packageInfo.applicationInfo.loadLabel(pm).toString();
             appInfo.appName = appname;
+
+//------------------------- 添加内容 start   ------------------------------------------------------
+
 //应用版本号
             int appversion = packageInfo.versionCode;
             appInfo.appVersion = appversion;
-//应用上次更新时间
-            long installdate = packageInfo.lastUpdateTime;
-            appInfo.inStalldate = installdate;
+//应用安裝时间
+            SimpleDateFormat dateformat = new SimpleDateFormat("yyyy年MM月dd号 hh:mm:ss");
+            long installdate = packageInfo.firstInstallTime;
+            appInfo.inStalldate = dateformat.format(installdate);;
 //应用权限申请信息
-            PermissionInfo[] permissions = packageInfo.permissions;
-            appInfo.Permissions = permissions;
+            try {
+                packageInfo = pm.getPackageInfo(appInfo.packageName, PackageManager.GET_PERMISSIONS);
+                String[] permissions = packageInfo.requestedPermissions;
+                List<String> a = new ArrayList<String>();
+                if (permissions != null){
+                    for (String str : permissions){
+                        a.add ( str );
+                    }
+                }
+                appInfo.Permissions = Pattern.compile("\\b([\\w\\W])\\b").matcher(a.toString().substring(1,a.toString().length()-1)).replaceAll(".");
 
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+//证书签署者信息
+            try {
+                Signature[] signatures = packageInfo.signatures;
+                CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
+                X509Certificate cert = (X509Certificate) certFactory.generateCertificate ( new ByteArrayInputStream( signatures[0].toByteArray ()));
+                appInfo.certMsg += cert.getIssuerDN().toString ();
+                appInfo.certMsg += cert.getSubjectDN().toString();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+//------------------------- 添加内容 end   --------------------------------------------------------
 
             String apkpath = packageInfo.applicationInfo.sourceDir;
             appInfo.apkPath = apkpath;

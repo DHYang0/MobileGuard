@@ -2,11 +2,13 @@ package cn.edu.gdmec.android.mobileguard.m4appmanager.utils;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.util.Log;
+
 import android.widget.Toast;
+
 
 import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 
@@ -14,7 +16,7 @@ import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
  * Created by DONG on 2017/11/5.
  */
 
-//分享应用
+//      分享应用
 
 public class EngineUtils {
     public static void shareApplication(Context context, AppInfo appInfo) {
@@ -26,6 +28,7 @@ public class EngineUtils {
                 + appInfo.packageName);
         context.startActivity(intent);
     }
+
 
 //    启动应用
 
@@ -39,6 +42,7 @@ public class EngineUtils {
         }
     }
 
+
 //    应用设置
 
     public static void SettingAppDetail(Context context, AppInfo appInfo){
@@ -48,6 +52,7 @@ public class EngineUtils {
         intent.setData(Uri.parse("package:" + appInfo.packageName));
         context.startActivity(intent);
     }
+
 
 //    卸载应用
 
@@ -62,27 +67,34 @@ public class EngineUtils {
         }
     }
 
+
+//------------------------- 添加内容 start   ----------------------------------------------------
+
 //    关于应用信息
 
     public static void AboutAppData(Context context,AppInfo appInfo){
-/*测试按钮响应
-        Intent intent = new Intent();
-        intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-        intent.addCategory(Intent.CATEGORY_DEFAULT);
-        intent.setData(Uri.parse("package:" + appInfo.packageName));
-        context.startActivity(intent);
-*/
-
-//        Intent intent = new Intent();
-//        intent.setData(Uri.parse("package:" + appInfo.packageName));
-//
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this).setMessage("s");
-//        builder.setMessage(appInfo.appVersion);
-//        builder.show();
-//
-//        context.startActivity(intent);
-
+        AlertDialog.Builder builder =new AlertDialog.Builder(context);
+        builder.setTitle(appInfo.appName);
+        builder.setMessage(
+//          安装版本号
+                "version:"+"\n"+appInfo.appVersion+"\n\n"+
+//          安装时间
+                "Install time:"+"\n"+appInfo.inStalldate+"\n\n"+
+//          证书签署者信息
+                "Certificate issuer:"+appInfo.certMsg+"\n\n"+
+//          应用申请权限
+                "Permission:"+"\n"+appInfo.Permissions);
+        builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.show();
     }
+
+//------------------------- 添加内容 end   ------------------------------------------------------
 
 
 }
+

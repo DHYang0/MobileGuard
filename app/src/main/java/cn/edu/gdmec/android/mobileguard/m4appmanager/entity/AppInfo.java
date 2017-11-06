@@ -16,11 +16,12 @@ public class AppInfo {
     public boolean isInRoom;
     public boolean isUserApp;
     public boolean isSelected = false;
-
+//------------------------- 添加内容 start   ------------------------------------------
     public int appVersion;
-    public long inStalldate;
-    public PermissionInfo[] Permissions;
-    public String apkbook;
+    public String inStalldate;
+    public String Permissions;
+    public String certMsg;
+//------------------------- 添加内容 end   ---------------------------------------------
 
     public String getAppLocation(boolean isInRoom){
         if (isInRoom){
