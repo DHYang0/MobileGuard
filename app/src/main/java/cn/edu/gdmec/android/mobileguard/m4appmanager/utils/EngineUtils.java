@@ -81,7 +81,7 @@ public class EngineUtils {
 //          安装时间
                 "Install time:"+"\n"+appInfo.inStalldate+"\n\n"+
 //          证书签署者信息
-                "Certificate issuer:"+appInfo.certMsg+"\n\n"+
+                "Certificate issuer:"+"\n"+appInfo.certMsg+"\n\n"+
 //          应用申请权限
                 "Permission:"+"\n"+appInfo.Permissions);
         builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {

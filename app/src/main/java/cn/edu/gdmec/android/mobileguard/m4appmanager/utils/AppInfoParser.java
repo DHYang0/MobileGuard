@@ -63,11 +63,14 @@ public class AppInfoParser {
             }
 //证书签署者信息
             try {
+                packageInfo = pm.getPackageInfo ( appInfo.packageName, PackageManager.GET_SIGNATURES );
                 Signature[] signatures = packageInfo.signatures;
                 CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
                 X509Certificate cert = (X509Certificate) certFactory.generateCertificate ( new ByteArrayInputStream( signatures[0].toByteArray ()));
-                appInfo.certMsg += cert.getIssuerDN().toString ();
-                appInfo.certMsg += cert.getSubjectDN().toString();
+                String certmsg = "";
+                certmsg += cert.getIssuerDN().toString ();
+                certmsg += cert.getSubjectDN().toString();
+                appInfo.certMsg = certmsg;
             }catch (Exception e){
                 e.printStackTrace();
             }

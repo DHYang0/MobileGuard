@@ -20,7 +20,7 @@ public class AppInfo {
     public int appVersion;
     public String inStalldate;
     public String Permissions;
-    public String certMsg;
+    public String certMsg = "";
 //------------------------- 添加内容 end   ---------------------------------------------
 
     public String getAppLocation(boolean isInRoom){
