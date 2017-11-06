@@ -77,7 +77,7 @@ public class EngineUtils {
         builder.setTitle(appInfo.appName);
         builder.setMessage(
 //          安装版本号
-                "version:"+"\n"+appInfo.appVersion+"\n\n"+
+                "Version:"+"\n"+appInfo.appVersion+"\n\n"+
 //          安装时间
                 "Install time:"+"\n"+appInfo.inStalldate+"\n\n"+
 //          证书签署者信息

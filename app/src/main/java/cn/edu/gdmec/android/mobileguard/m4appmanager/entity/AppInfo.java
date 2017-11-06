@@ -17,7 +17,7 @@ public class AppInfo {
     public boolean isUserApp;
     public boolean isSelected = false;
 //------------------------- 添加内容 start   ------------------------------------------
-    public int appVersion;
+    public String appVersion;
     public String inStalldate;
     public String Permissions;
     public String certMsg = "";

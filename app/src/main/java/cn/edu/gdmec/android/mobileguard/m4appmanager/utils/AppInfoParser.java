@@ -40,7 +40,7 @@ public class AppInfoParser {
 //------------------------- 添加内容 start   ------------------------------------------------------
 
 //应用版本号
-            int appversion = packageInfo.versionCode;
+            String appversion = packageInfo.versionName;
             appInfo.appVersion = appversion;
 //应用安裝时间
             SimpleDateFormat dateformat = new SimpleDateFormat("yyyy年MM月dd号 hh:mm:ss");

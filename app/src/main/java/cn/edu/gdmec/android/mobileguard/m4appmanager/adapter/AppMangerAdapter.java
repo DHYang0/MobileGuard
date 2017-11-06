@@ -166,7 +166,7 @@ public class AppMangerAdapter extends BaseAdapter {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.tv_launch_app:
-                    EngineUtils.shareApplication(context, appInfo);
+                    EngineUtils.startApplication(context, appInfo);
                     break;
                 case R.id.tv_share_app:
                     EngineUtils.shareApplication(context, appInfo);
