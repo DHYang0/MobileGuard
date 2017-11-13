@@ -21,6 +21,7 @@ public class AppInfo {
     public String inStalldate;
     public String Permissions;
     public String certMsg = "";
+    public String appActivityName;
 //------------------------- 添加内容 end   ---------------------------------------------
 
     public String getAppLocation(boolean isInRoom){

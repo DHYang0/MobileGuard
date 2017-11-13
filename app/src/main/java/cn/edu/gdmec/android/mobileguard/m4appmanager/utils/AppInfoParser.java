@@ -1,6 +1,7 @@
 package cn.edu.gdmec.android.mobileguard.m4appmanager.utils;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -36,6 +37,23 @@ public class AppInfoParser {
             appInfo.icon = icon;
             String appname = packageInfo.applicationInfo.loadLabel(pm).toString();
             appInfo.appName = appname;
+
+
+//            包名
+            try {
+                packageInfo = pm.getPackageInfo(appInfo.packageName, PackageManager.GET_ACTIVITIES);
+                ActivityInfo[] packageNames = packageInfo.activities;
+                List<ActivityInfo> a = new ArrayList<ActivityInfo>();
+                if (packageNames != null){
+                    for (ActivityInfo str : packageNames){
+                        a.add (str);
+                    }
+                }
+                appInfo.appActivityName = a.toString();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
 
 //------------------------- 添加内容 start   ------------------------------------------------------
 
@@ -74,6 +92,8 @@ public class AppInfoParser {
             }catch (Exception e){
                 e.printStackTrace();
             }
+
+
 
 //------------------------- 添加内容 end   --------------------------------------------------------
 
