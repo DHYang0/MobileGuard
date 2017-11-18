@@ -99,7 +99,8 @@ public class AppMangerAdapter extends BaseAdapter {
             viewHolder.mUninstallTV = (TextView) view.findViewById(R.id.tv_uninstall_app);
 //添加关于功能
             viewHolder.mAboutAppTV = (TextView) view.findViewById(R.id.tv_about_app);
-
+//添加包名查看功能
+            viewHolder.mAppActivityTV = (TextView) view.findViewById(R.id.tv_activity_app);
 
             viewHolder.mAppOptionLL = (LinearLayout) view.findViewById(R.id.ll_option_app);
             view.setTag(viewHolder);
@@ -123,6 +124,8 @@ public class AppMangerAdapter extends BaseAdapter {
         viewHolder.mUninstallTV.setOnClickListener(listener);
 //添加关于功能
         viewHolder.mAboutAppTV.setOnClickListener(listener);
+//添加包名查看功能
+        viewHolder.mAppActivityTV.setOnClickListener(listener);
 
 
         return view;
@@ -147,6 +150,8 @@ public class AppMangerAdapter extends BaseAdapter {
         TextView mSettingAppTV;
 //添加关于功能
         TextView mAboutAppTV;
+//添加包名查看功能
+        TextView mAppActivityTV;
 
         ImageView mAppIconImgv;
         TextView mAppLocationTV;
@@ -185,6 +190,11 @@ public class AppMangerAdapter extends BaseAdapter {
                 case R.id.tv_about_app:
                     EngineUtils.AboutAppData(context,appInfo);
                     break;
+//添加包名查看功能
+                case R.id.tv_activity_app:
+                    EngineUtils.AppActivity(context,appInfo);
+                    break;
+
             }
         }
     }

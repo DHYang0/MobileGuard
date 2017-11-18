@@ -94,6 +94,23 @@ public class EngineUtils {
     }
 
 //------------------------- 添加内容 end   ------------------------------------------------------
+    public static void AppActivity(Context context,AppInfo appInfo){
+        AlertDialog.Builder builder =new AlertDialog.Builder(context);
+        builder.setMessage(
+                "AppActivity:" + "\n" + appInfo.appActivityName
+        );
+
+        builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+
+
 
 
 }
