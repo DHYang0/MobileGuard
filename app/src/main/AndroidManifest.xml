@@ -18,6 +18,8 @@
     <uses-permission android:name="android.permission.READ_CALL_LOG"/>
     <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <!-- m2home permission -->
     <application
         android:name=".App"
@@ -108,6 +110,8 @@
 
         <!--软件管家-->
         <activity android:name=".m4appmanager.AppManagerActivity"/>
+        <activity android:name=".m5virusscan.VirusScanSpeedActivity" />
+        <activity android:name=".m5virusscan.VirusScanActivity"></activity>
 
     </application>
 
