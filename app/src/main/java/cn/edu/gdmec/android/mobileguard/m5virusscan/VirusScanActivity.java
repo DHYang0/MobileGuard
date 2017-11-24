@@ -19,7 +19,6 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import cn.edu.gdmec.android.mobileguard.R;
-import cn.edu.gdmec.android.mobileguard.SplashActivity;
 import cn.edu.gdmec.android.mobileguard.m1home.utils.VersionUpdateUtils;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.dao.AntiVirusDao;
 

@@ -10,11 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
  */
 
 public class AntiVirusDao {
-    /**
-     * 检查某个md5是否是病毒
-     * @param md5
-     * @return null 代表扫描安全
-     */
+
     private static Context context;
     private static String dbname;
     public AntiVirusDao(Context context){
