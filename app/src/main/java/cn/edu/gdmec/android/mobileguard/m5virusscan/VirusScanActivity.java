@@ -1,6 +1,5 @@
 package cn.edu.gdmec.android.mobileguard.m5virusscan;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Environment;
@@ -19,14 +18,9 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import cn.edu.gdmec.android.mobileguard.R;
+import cn.edu.gdmec.android.mobileguard.SplashActivity;
 import cn.edu.gdmec.android.mobileguard.m1home.utils.VersionUpdateUtils;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.dao.AntiVirusDao;
-
-
-/**
- * Created by DONG on 2017/11/13.
- */
-
 
 public class VirusScanActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mLastTimeTV;
@@ -51,23 +45,25 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            AntiVirusDao dao = new AntiVirusDao(VirusScanActivity.this);
-            String dbVersion = dao.getVirusDbVersion();
-            mDbVersionTV = (TextView) findViewById(R.id.tv_dbversion);
-            mDbVersionTV.setText("病毒数据库版本:"+dbVersion);
-            UpdateDb(dbVersion);
+            if (msg.what == 0){
+                AntiVirusDao dao = new AntiVirusDao(VirusScanActivity.this);
+                String dbVersion = dao.getVirusDbVersion();
+                mDbVersionTV = (TextView) findViewById(R.id.tv_dbversion);
+                mDbVersionTV.setText("病毒数据库版本:"+dbVersion);
+                UpdateDb(dbVersion);
+            }
             super.handleMessage(msg);
         }
     };
     VersionUpdateUtils.DownloadCallback downloadCallback = new VersionUpdateUtils.DownloadCallback() {
         @Override
         public void afterDownload(String filename) {
-            copyDB("antivirus.db", Environment.getExternalStoragePublicDirectory("/download/").getPath());
+            copyDB("antivirus.db", Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath());
         }
     };
 
     final private void UpdateDb(String localDbVersion){
-        final VersionUpdateUtils versionUpdateUtils = new VersionUpdateUtils(localDbVersion, VirusScanActivity.this,downloadCallback,null);
+        final VersionUpdateUtils versionUpdateUtils = new VersionUpdateUtils(localDbVersion,VirusScanActivity.this,downloadCallback,null);
         new Thread(){
 
             @Override
@@ -128,6 +124,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
         mLeftImgv.setImageResource(R.drawable.back);
         mLastTimeTV = (TextView) findViewById(R.id.tv_lastscantime);
         findViewById(R.id.rl_allscanvirus).setOnClickListener(this);
+        findViewById(R.id.rl_cloudscanvirus).setOnClickListener(this);
     }
     @Override
     public void onClick(View view) {
@@ -138,6 +135,11 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
             case R.id.rl_allscanvirus:
                 startActivity(new Intent(this,VirusScanSpeedActivity.class));
                 break;
+            case R.id.rl_cloudscanvirus:
+                Intent intent = new Intent(this,VirusScanSpeedActivity.class);
+                intent.putExtra("cloud",true);
+                startActivity(intent);
+
         }
     }
 }
