@@ -14,12 +14,12 @@
             android:padding="5dp"
             android:background="@color/graye5"/>
 
-        <CheckBox
-            android:id="@+id/cb_applock_service"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="程序锁服务" />
+        <!--<CheckBox-->
+            <!--android:id="@+id/cb_applock_service"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:checked="false"-->
+            <!--android:text="程序锁服务" />-->
     </LinearLayout>
     <ListView
         android:id="@+id/lv_lock"
