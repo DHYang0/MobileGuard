@@ -92,7 +92,6 @@
             style="@style/tvyellow14sp"
             android:drawableTop="@drawable/abouticon_yellow_n"
             android:text="活动" />
-
         <View
             android:layout_width="1px"
             android:layout_height="match_parent"
