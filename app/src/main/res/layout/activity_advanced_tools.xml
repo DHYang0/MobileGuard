@@ -36,6 +36,6 @@
         android:layout_height="55dp"
         android:gravity="center_vertical"
         android:layout_marginTop="3dp"
-        app:desc="程序"
+        app:desc="程序锁"
         android:src="@drawable/programoflock"/>
 </LinearLayout>
