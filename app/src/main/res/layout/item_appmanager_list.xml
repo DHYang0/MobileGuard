@@ -91,7 +91,8 @@
             android:id="@+id/tv_about_app"
             style="@style/tvyellow14sp"
             android:drawableTop="@drawable/abouticon_yellow_n"
-            android:text="活动" />
+            android:text="关于" />
+
         <View
             android:layout_width="1px"
             android:layout_height="match_parent"
@@ -100,7 +101,7 @@
             android:id="@+id/tv_activity_app"
             style="@style/tvyellow14sp"
             android:drawableTop="@drawable/activityicon_yellow_n"
-            android:text="关于" />
+            android:text="活动" />
 
     </LinearLayout>
 
